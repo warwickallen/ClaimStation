@@ -32,6 +32,9 @@ changing.
 Copyright © 2026 W W Initiatives Limited.
 All rights reserved.
 
+"ClaimStation" is a Trade Mark of W W Initiatives Limited
+(Trade Mark number is pending).
+
 ---
 
 [claimstation.app]:             https://claimstation.app
