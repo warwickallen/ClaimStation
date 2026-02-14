@@ -1,0 +1,12 @@
+---
+description: Workflow for fixing errors from the generated error report (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 70
+---
+
+# Error Fixing (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+When the user asks to "fix errors" or "review errors": run `npm run errors:review` to refresh `claimstation-app/.cursor/errors/ERRORS_TO_FIX.md`, then read the report. For each error (by occurrence count): read the source file, identify root cause, implement minimal fix, run `npm run type-check`. After fixing all: run `npm test`, summarise changes. Mark resolved via PATCH to `http://localhost:3000/api/errors/{id}` with `{ "status": "fixed", "fix_notes": "..." }`. Make minimal changes; mark 'ignored' with explanation if in third-party code.

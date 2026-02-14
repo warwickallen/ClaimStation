@@ -1,0 +1,49 @@
+---
+description: React and Next.js component patterns for ClaimStation app (app only)
+globs: "claimstation-app/**/*.tsx"
+alwaysApply: false
+priority: 35
+---
+
+# React Patterns (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+## Component Structure
+
+Use functional components with TypeScript interfaces for props.
+
+```tsx
+interface ClaimCardProps {
+  claim: Claim;
+  onStatusChange?: (status: ClaimStatus) => void;
+}
+
+export function ClaimCard({ claim, onStatusChange }: ClaimCardProps) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{claim.description}</CardTitle>
+      </CardHeader>
+    </Card>
+  );
+}
+```
+
+## Server vs Client Components
+
+- Default to Server Components
+- Add `'use client'` only when needed (hooks, browser APIs, interactivity)
+- Keep client components small and leaf-level
+
+## Data Fetching
+
+Use React Query for client-side data fetching.
+
+## Forms
+
+Use React Hook Form with Zod validation.
+
+## UI Components
+
+Use shadcn/ui components. Import from `@/components/ui/` (within claimstation-app).

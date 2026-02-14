@@ -1,0 +1,48 @@
+---
+description: API route and public API conventions for ClaimStation app (app only)
+globs: "claimstation-app/**/api/**/*.ts"
+alwaysApply: false
+priority: 40
+---
+
+# API Conventions (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+## Route Handlers (Next.js)
+
+Use Next.js App Router API routes in `claimstation-app/src/app/api/`.
+
+```typescript
+// src/app/api/claims/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
+
+export async function GET(request: NextRequest) {
+  const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+  }
+
+  const { data, error } = await supabase
+    .from('claims')
+    .select('*')
+    .eq('owner_id', user.id);
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ data });
+}
+```
+
+## Public API (v1)
+
+Public API routes go in `claimstation-app/src/app/api/v1/`. Use API key authentication.
+
+## Error Responses
+
+Use consistent error format. Apply rate limiting to all public API endpoints.

@@ -1,0 +1,19 @@
+---
+description: Internationalisation (i18n) checklist for ClaimStation app (app only)
+globs: "claimstation-app/**/*.tsx,claimstation-app/**/*.ts,claimstation-app/messages/**/*.json"
+alwaysApply: false
+---
+
+# Internationalisation (i18n) Checklist (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+Reference: `claimstation-app/docs/INTERNATIONALISATION_PLAN.md`.
+
+1. **New or modified user-facing strings** — Add or update entries in `claimstation-app/messages/en-NZ.json`; use `useTranslations()` / `getTranslations()`.
+2. **Navigation and links** — Import from `@/i18n/navigation`, not `next/link` or `next/navigation`.
+3. **Date, number, or currency formatting** — Use locale from `useLocale()` / `getLocale()`; avoid hardcoded locales.
+4. **New pages/components/API responses** — Use translations and `@/i18n/navigation`; API responses use stable enum keys.
+5. **Emails and server-rendered content** — Add keys to `claimstation-app/messages/emails/` and use translations.
+
+Before committing, scan the diff for hardcoded user-facing strings, and for `Link`/`redirect`/`usePathname`/`useRouter` (should use `@/i18n/navigation`).

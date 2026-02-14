@@ -1,0 +1,38 @@
+---
+description: ClaimStation app project overview and architecture (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 10
+---
+
+# ClaimStation Project (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+A web app for tracking reimbursement claims (health insurance, work expenses, government subsidies).
+
+## Tech Stack
+
+- **Frontend**: Next.js 14+ (App Router), TypeScript, Tailwind CSS, shadcn/ui
+- **Backend**: Supabase (PostgreSQL, Auth, Storage, Edge Functions)
+- **Hosting**: Vercel (frontend), Supabase (backend)
+- **AI**: OpenAI API (optional, user-enabled)
+
+## Key Directories
+
+- `claimstation-app/src/app/` — Next.js App Router pages
+- `claimstation-app/src/components/`, `src/components/ui/` — React and shadcn/ui components
+- `claimstation-app/src/lib/` — Utilities, Supabase client
+- `claimstation-app/src/types/` — TypeScript types
+- `claimstation-app/src/api/` — API route handlers
+- `claimstation-app/supabase/migrations/`, `supabase/functions/` — DB migrations, Edge Functions
+
+## Core Entities
+
+Claims, Transactions, Bank Accounts, Categories, Reimbursing Entities.
+
+## Reference Documents
+
+- `claimstation-app/docs/README.md` — doc structure
+- Requirements: `claimstation-app/docs/en/tech/requirements/index.md`
+- Database schema: same doc, section 13

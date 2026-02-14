@@ -1,0 +1,16 @@
+---
+description: Documentation maintenance for ClaimStation app (app only)
+globs: "claimstation-app/**/*.md"
+alwaysApply: false
+---
+
+# Documentation Maintenance (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+When you add, change, or remove user-facing or technical functionality in the app, update the documentation accordingly.
+
+- **User docs**: `claimstation-app/docs/<locale>/user/` (en, de, nl). For in-app help.
+- **Tech docs**: `claimstation-app/docs/en/tech/` — British English only.
+
+Principles: Code is source of truth; use relative links; use Mermaid where helpful; i18n tags for dialect differences. When making a change: update user docs if feature changed; update tech docs if API/schema/workflow changed; use British English in tech docs.

@@ -1,0 +1,65 @@
+---
+description: AI-assisted code review guidelines for ClaimStation app (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 60
+---
+
+# Code Review (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+When asked to review code or when reviewing changes before commit:
+
+## Review Checklist
+
+### Security
+- [ ] No hardcoded secrets or credentials
+- [ ] User input is validated with Zod schemas
+- [ ] Database queries use RLS-protected Supabase client
+- [ ] Sensitive data (bank accounts, API keys) is masked in UI
+
+### Performance
+- [ ] No N+1 query patterns
+- [ ] Large lists use pagination
+- [ ] React components avoid unnecessary re-renders
+- [ ] Images and assets are optimised
+
+### Code Quality
+- [ ] TypeScript strict mode - no `any` types without justification
+- [ ] Error handling is explicit, not swallowed
+- [ ] Functions are single-purpose and testable
+- [ ] No dead code or commented-out blocks
+
+### Patterns
+- [ ] Follows existing patterns in `.cursor/rules/`
+- [ ] Uses types from `claimstation-app/src/types/`
+- [ ] Uses Supabase client from `claimstation-app/src/lib/supabase/`
+- [ ] Server Components by default, Client only when necessary
+
+### Testing
+- [ ] New logic has unit tests
+- [ ] Critical paths have E2E coverage
+- [ ] Tests cover success and failure cases
+
+## Review Output Format
+
+When providing a review, use this structure:
+
+```markdown
+## Summary
+Brief overview of what the code does and overall assessment.
+
+## Issues Found
+1. **[SEVERITY]** Description of issue
+   - File: `path/to/file.ts:line`
+   - Suggestion: How to fix
+
+## Positive Observations
+- What's done well
+
+## Recommendations
+- Optional improvements for future consideration
+```
+
+Severity levels: `CRITICAL` (must fix), `WARNING` (should fix), `INFO` (consider)

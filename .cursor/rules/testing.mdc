@@ -1,0 +1,12 @@
+---
+description: Testing standards for ClaimStation app - Vitest, Playwright (app only)
+globs: "claimstation-app/**/*.test.ts,claimstation-app/**/*.test.tsx,claimstation-app/e2e/**/*.ts"
+alwaysApply: false
+priority: 50
+---
+
+# Testing Standards (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+Use Vitest for unit tests, Playwright for E2E tests. Unit tests: `*.test.ts` or `*.test.tsx`. E2E tests: `*.spec.ts` in `claimstation-app/e2e/`. Use React Testing Library with Vitest for component tests. Mock Supabase via `@/lib/supabase/client` in tests.

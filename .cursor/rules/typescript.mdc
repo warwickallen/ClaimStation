@@ -1,0 +1,71 @@
+---
+description: TypeScript coding standards - strict mode, types, error handling
+globs: "**/*.ts,**/*.tsx"
+alwaysApply: false
+priority: 30
+---
+
+# TypeScript Standards
+
+## Strict Mode
+
+Always use strict TypeScript. Never use `any` without justification.
+
+```typescript
+// ❌ BAD
+const data: any = await fetchData();
+
+// ✅ GOOD
+const data: ClaimResponse = await fetchData();
+```
+
+## Type Definitions
+
+Define types in the project's types directory (e.g. `src/types/` in claimstation-app). Use interfaces for objects, types for unions.
+
+```typescript
+// src/types/claim.ts
+export interface Claim {
+  id: string;
+  description: string;
+  expense_amount: number;
+  status: ClaimStatus;
+}
+
+export type ClaimStatus =
+  | 'draft'
+  | 'pending_review'
+  | 'submitted'
+  | 'processing'
+  | 'partially_paid'
+  | 'fully_paid'
+  | 'rejected'
+  | 'disputed';
+```
+
+## Error Handling
+
+Always handle errors explicitly. Use custom error classes.
+
+```typescript
+// ❌ BAD
+try {
+  await saveClaim(data);
+} catch (e) {}
+
+// ✅ GOOD
+try {
+  await saveClaim(data);
+} catch (error) {
+  console.error('Failed to save claim:', error);
+  throw new ClaimError('Unable to save claim', { cause: error });
+}
+```
+
+## Null Checks
+
+Use optional chaining and nullish coalescing.
+
+```typescript
+const amount = claim?.expense_amount ?? 0;
+```

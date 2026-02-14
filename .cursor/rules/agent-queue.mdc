@@ -1,0 +1,22 @@
+---
+description: Process the agent queue for ClaimStation app — fix or implement ready item, deploy, mark complete (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 80
+---
+
+# Agent Queue (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+When the user says "process the agent queue" or when `claimstation-app/.cursor/agent-jobs/current.json` exists:
+
+1. **Load the current job**: Read `claimstation-app/.cursor/agent-jobs/current.json` (github_issue with github_owner, github_repo, github_issue_number, subject, body, feedback_type, etc.).
+
+2. **Execute**: For **defect** follow `defect-fixing.mdc`; for **feature** follow `feature-request-implementation.mdc`; for **general** treat as feature or discussion.
+
+3. **Deploy**: Run `npm run type-check && npm run lint && npm run test` in claimstation-app; commit with conventional message; push; run `gh run watch --exit-status` until CI is green.
+
+4. **Mark complete**: Create `claimstation-app/.cursor/agent-jobs/completed/<github_issue_number>.json` with `{ "resolutionStatus": "completed"|"not_planned"|"duplicate"|"cancelled", "type": "github_issue", "notes": "..." }`. The daemon will comment and close the issue.
+
+Process exactly one job per run. Do not reference feature_requests or defect_reports DB tables — feedback is GitHub Issues.

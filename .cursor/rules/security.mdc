@@ -1,0 +1,18 @@
+---
+description: Security best practices for ClaimStation app - auth, RLS, secrets (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 15
+---
+
+# Security Requirements (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+- Always verify user session before data access; use Supabase Auth.
+- All database queries must go through RLS-protected Supabase client.
+- Never expose internal IDs or sensitive data in URLs; mask bank account numbers (last 4 digits).
+- Store API keys hashed; use `ct_` prefix; implement key rotation.
+- Validate all inputs with Zod; sanitise user content; never interpolate user input into SQL.
+- Never commit secrets; use environment variables; document in `.env.example`.
+- Log security-relevant events (login attempts, sensitive data access, API key creation/revocation, data exports).

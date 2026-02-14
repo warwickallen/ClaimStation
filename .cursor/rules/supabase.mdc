@@ -1,0 +1,22 @@
+---
+description: Supabase database and authentication patterns for ClaimStation app (app only)
+globs: "claimstation-app/**/*.ts,claimstation-app/**/*.tsx,claimstation-app/supabase/**/*"
+alwaysApply: false
+priority: 45
+---
+
+# Supabase Patterns (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+## Client Setup
+
+Use the singleton pattern for Supabase client. See `claimstation-app/src/lib/supabase/client.ts` (browser) and `server.ts` (server).
+
+## Database Queries
+
+Always use typed queries. Handle errors explicitly. All tables must have RLS policies; never bypass RLS in application code.
+
+## Migrations
+
+Create migrations in `claimstation-app/supabase/migrations/` with descriptive names.

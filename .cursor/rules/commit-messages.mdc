@@ -1,0 +1,25 @@
+---
+description: Commit message formatting - subject and body line length limits
+alwaysApply: true
+---
+
+# Commit Message Formatting
+
+This rule adds line-length limits to the existing Conventional Commits format
+(see `implementation.mdc` and `agentic-automation.mdc` where applicable). Both apply.
+
+When writing commit messages, follow these line-length limits:
+
+1. **Subject line**: Maximum 50 characters
+2. **Body lines**: No line may exceed 72 characters
+
+Wrap long body text onto multiple lines. Keep the subject concise and imperative.
+
+## Example
+
+```
+feat(claims): add status workflow
+
+Introduce workflow states for claims: draft, submitted, approved, and
+rejected. Each state restricts allowed transitions.
+```

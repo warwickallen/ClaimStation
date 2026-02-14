@@ -1,0 +1,14 @@
+---
+description: Workflow for fixing a defect from the agent queue (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 75
+---
+
+# Defect Fixing (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+When `claimstation-app/.cursor/agent-jobs/current.json` contains a `github_issue` with `feedback_type: "defect"`: use the job body as source of truth; implement a minimal, targeted fix; run `npm run type-check` and `npm run test`; write completion file to `claimstation-app/.cursor/agent-jobs/completed/<github_issue_number>.json` with `{ resolutionStatus, type: "github_issue", notes? }`. Follow `agent-queue.mdc` for full workflow.
+
+When the user asks to fix a defect ad hoc: direct them to GitHub (Support → Feedback → My Feedback) or suggest commenting `/agent` on the issue; or suggest submitting via the feedback sidebar. Make minimal changes; if not applicable use resolutionStatus `not_planned`, `duplicate`, or `cancelled` with notes.

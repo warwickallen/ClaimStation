@@ -1,0 +1,31 @@
+---
+description: Implementation orchestration for ClaimStation app - session workflow, checklists (app only)
+globs: "claimstation-app/**"
+alwaysApply: false
+priority: 20
+---
+
+# Implementation Orchestration (App Only)
+
+**App-only**: This rule applies only when working in the ClaimStation app (`claimstation-app`). Ignore it when working in claimstation-www or other directories.
+
+## At Session Start
+
+1. Read `claimstation-app/docs/en/tech/implementation-status/index.md` for current progress.
+2. Identify next task (first unchecked item); check prerequisites; implement; update status.
+
+## Task Completion Checklist
+
+Before marking a task complete: `npm run type-check`, `npm run lint`, `npm run test` in claimstation-app; follow `.cursor/rules/`; use types from `claimstation-app/src/types/` and Supabase from `claimstation-app/src/lib/supabase/`; commit, push, run `gh run watch --exit-status`.
+
+## Post-Change
+
+Consider: version bump (see versioning.mdc), docs in `claimstation-app/docs/`, in-app Help/About, unit and E2E tests. Use Conventional Commits.
+
+## Key References
+
+- Requirements: `claimstation-app/docs/en/tech/requirements/index.md`
+- Progress: `claimstation-app/docs/en/tech/implementation-status/index.md`
+- Versioning: `claimstation-app/docs/en/tech/operations/versioning.md`
+- Types: `claimstation-app/src/types/index.ts`
+- E2E: `claimstation-app/e2e/`

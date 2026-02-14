@@ -1,0 +1,122 @@
+---
+description: Agentic automation for trunk-based development with deployment monitoring
+alwaysApply: true
+priority: 15
+---
+
+# Agentic Automation
+
+**Mandatory**: Agents MUST commit, push, and monitor deployments after each unit of work when the project has CI configured. Do NOT end a session with unpushed commits unless explicitly blocked (e.g. no push permissions). Pushing through to production is the default behaviour where applicable, not optional.
+
+## Trunk-Based Development
+
+- Work directly on `main` branch (or short-lived feature branches that merge quickly)
+- Keep commits small and focused
+- Ensure each commit leaves the codebase in a deployable state
+- Avoid long-lived branches; merge frequently
+
+## Commit Strategy
+
+Commit regularly throughout your work:
+
+1. **Commit after each logical unit of work**:
+   - A single feature implementation
+   - A bug fix
+   - A refactoring change
+   - Documentation updates
+   - Test additions
+
+2. **Commit message format** (Conventional Commits):
+   ```
+   <type>(<scope>): <description>
+   ```
+   Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+3. **Before committing**, ensure the project's checks pass (e.g. `npm run type-check`, `npm run lint`, `npm run test` in claimstation-app).
+
+## Push Strategy
+
+**Push after every completed task.** Do not wait for "perfect" or "complete" features—push as soon as a logical unit passes verification. Prefer more frequent, smaller pushes over batching.
+
+1. **Push whenever**:
+   - A feature, fix, or change is implemented and verified
+   - All verification checks pass locally
+   - You have unpushed commits at session end (MUST push before finishing)
+
+2. **Before pushing**, run the project's verification (e.g. `npm run type-check && npm run lint && npm run test`).
+
+3. **Push command**:
+   ```bash
+   git push -u origin <branch-name>
+   ```
+
+4. **After pushing**, you MUST monitor the deployment where CI is configured (e.g. `gh run watch --exit-status`). Do not skip this step.
+
+## Deployment Monitoring
+
+**Required**: After every push to a repo with GitHub Actions CI, run `gh run watch --exit-status` and wait for CI to complete. If the run fails, investigate and fix before considering the task complete.
+
+### Check Workflow Status
+
+```bash
+# List recent workflow runs
+gh run list --limit 5
+
+# Watch a specific run in real-time
+gh run watch
+
+# View details of the latest run
+gh run view --log
+```
+
+### Monitor for Failures
+
+After pushing, wait for CI to complete and check status:
+
+```bash
+# Wait for the run to complete (up to 10 minutes)
+gh run watch --exit-status || echo "CI failed - investigating..."
+
+# If failed, get failure details
+gh run view --log-failed
+```
+
+## Handling Deployment Failures
+
+If a deployment fails:
+
+1. **Identify the failure**:
+   ```bash
+   gh run view --log-failed
+   ```
+
+2. **Fix and push**:
+   - Make the minimal fix required
+   - Commit with message like `fix(ci): resolve type error in X`
+   - Push and monitor again
+
+3. **If stuck**, report the issue clearly:
+   - What failed (include error message)
+   - What you've tried
+   - What you need (credentials, permissions, etc.)
+
+## Workflow Summary
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  1. Make changes                                            │
+│  2. Verify locally (type-check, lint, test)                 │
+│  3. Commit with descriptive message                         │
+│  4. PUSH — do not leave commits unpushed                    │
+│  5. Monitor: gh run watch --exit-status (where CI exists)    │
+│  6. If failure: fix, commit, push, re-monitor until green   │
+│  7. Only then proceed or end session                        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Session-end rule**: Before ending your session, if you have any unpushed commits, you MUST push, run `gh run watch --exit-status` where applicable, and address any failures. Treat "push to production" as the natural conclusion of each unit of work.
+
+## Project-specific CI
+
+- **claimstation-app**: Full CI in `claimstation-app/.github/workflows/` (lint, test, database, build, e2e, deploy to Vercel, Supabase Edge Functions). See `claimstation-app/.cursor/rules/` for app-specific automation details if needed.
+- **claimstation-www**: May have its own workflow; run that project's checks before push.
