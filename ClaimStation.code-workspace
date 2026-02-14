@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "./claimstation-app"
+		},
+		{
+			"path": "./claimstation-www"
+		}
+	],
+	"settings": {}
+}
