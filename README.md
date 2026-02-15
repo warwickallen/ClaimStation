@@ -1,13 +1,18 @@
 # ClaimStation
 
-This is the parent repo for **ClaimStation** — an application for tracking and
-managing reimbursement claims (health insurance, work expenses, government
-subsidies, etc).  It contains two projects: one for the application and one
-for the marketing website.  Each project has its own README with setup, script,
-and deployment details.  Work in the subdirectory for the project you are
-changing.
+This is the parent repository for **ClaimStation** — an application for tracking
+and managing reimbursement claims (health insurance, work expenses, government
+subsidies, etc).  It contains two project components: one for the application
+and one for the marketing website.  Each project component has its own README
+with setup, script, and deployment details.  Work in the subdirectory for the
+project component you are changing.
 
-## Projects
+## Project Components
+
+Each project component:
+- is in a subdiectory of this project,
+- is git-ignored by this parent repository, and
+- has its own repository.
 
 ### ClaimStation App
 
