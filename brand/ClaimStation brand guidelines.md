@@ -47,6 +47,46 @@ Use a three-tier tagline system:
 - "Track health insurance, work expenses, and government reimbursements in one
   simple app."
 
+## Target Market
+
+The product is aimed at an international consumer market.  It will be offered in many languages.  The first languages/dialects to target, listed in order, will be:
+ 
+| Priority | Locale Code | Language - Region | Note |
+|----------|-------------|-------------------|------|
+| 1 | en-NZ | English - New Zealand | The app is already offered in this language/dialect |
+| 2 | en-GB | English - United Kingdom | The app is already offered in this language/dialect |
+| 3 | en-US | English - United States | The app is already offered in this language/dialect |
+| 4 | nl-NL | Dutch - Netherlands | The app is already offered in this language/dialect |
+| 5 | de-DE | German - Germany | The app is already offered in this language/dialect |
+| 6 | es-419 | Spanish - Latin America | |
+| 7 | zh-CN | Chinese Simplified - China | |
+| 8 | hi-IN | Hindi - India | |
+| 9 | pt-BR | Portuguese - Brazil | |
+| 10 | ja-JP | Japanese - Japan | |
+| 11 | fr-FR | French - France | |
+| 12 | ar-SA | Arabic - Saudi Arabia | |
+| 13 | ru-RU | Russian - Russia | |
+| 14 | ko-KR | Korean - South Korea | |
+| 15 | id-ID | Indonesian - Indonesia | |
+| 16 | tr-TR | Turkish - Turkey | |
+| 17 | vi-VN | Vietnamese - Vietnam | |
+| 18 | es-ES | Spanish - Spain | |
+| 19 | it-IT | Italian - Italy | |
+| 20 | th-TH | Thai - Thailand | |
+| 21 | pl-PL | Polish - Poland | |
+| 22 | pt-PT | Portuguese - Portugal | |
+| 23 | en-AU | English - Australia | |
+| 24 | bn-BD | Bengali - Bangladesh | |
+ 
+## Themes
+
+The app currently has five themes:
+
+* Light mode
+* Dark mode
+* High-contrast light mode
+* High-contrast dark mode
+
 ---
 
 [ClaimStation logo - rose curve device - static]:
