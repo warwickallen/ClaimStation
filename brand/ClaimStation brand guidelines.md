@@ -82,12 +82,15 @@ The product is aimed at an international consumer market.  It will be offered i
  
 ## Themes
 
-The app currently has five themes:
+The app currently has four themes:
 
 * Light mode
 * Dark mode
 * High-contrast light mode
 * High-contrast dark mode
+
+It also has a "System" psuedo-theme, which selects one of the four themes
+according to the brower's setting.
 
 ---
 
