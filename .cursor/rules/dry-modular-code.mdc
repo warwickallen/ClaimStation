@@ -1,0 +1,53 @@
+---
+description: Prefer modular, reusable code and DRY (Don't Repeat Yourself) methodologies
+alwaysApply: true
+---
+
+# DRY and Modular Code
+
+Agents should prefer **modular, reusable** code and follow **DRY** (Don't Repeat Yourself) where it makes sense.
+
+## Principles
+
+1. **Extract once, reuse** — If the same logic appears in more than one place, extract it into a shared function, hook, or module.
+2. **Single responsibility** — Prefer small, focused units (functions, components, modules) that do one thing well.
+3. **Compose over duplicate** — Build behaviour by composing existing pieces rather than copying and tweaking code.
+
+## When to apply
+
+- **Two or more call sites** with the same or very similar logic → extract to a shared helper or hook.
+- **Repeated patterns** (e.g. form validation, API calls, error handling) → centralise in a utility or service.
+- **Large blocks** that mix concerns → split into smaller, testable units with clear boundaries.
+
+## When to avoid over-abstraction
+
+- Do **not** extract a one-off use "just in case"; wait until a second use appears.
+- Do **not** introduce deep abstraction layers for a single feature; keep the first implementation straightforward.
+
+## Example
+
+```typescript
+// ❌ Repeated logic in multiple components
+function OrderSummary() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => { /* fetch order */ }, []);
+  // ...
+}
+function InvoiceSummary() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => { /* fetch invoice */ }, []);
+  // ...
+}
+
+// ✅ Shared hook, DRY
+function useDocument(id: string, type: 'order' | 'invoice') {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => { /* fetch by type */ }, [id, type]);
+  return { loading, error, data };
+}
+```
+
+Keep abstractions justified by actual reuse; prefer minimal change and clarity over theoretical generality.
