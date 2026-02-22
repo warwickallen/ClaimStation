@@ -11,10 +11,12 @@ There are three primary logos:
     ![ClaimStation logo - rose curve device - animated]
 
 3.  The word "ClaimStation" in *Fraunces Light Italic* font, with the "C" and
-    the "S" a font size 7*6 larger than the other letters, but lowered so the
-    tops of those letters are at the same height as if they were the same size
-    as the other letters and not lowered.  The letter kerning is adjusted to
-    cause the word's width to be 11/2 the word's height.
+    the "S" a font size 7*6 larger than the other letters.  The initial letter
+    "C" and the string "Station" are all lowered by the same amount.  They are
+    lowered such that the top of the "C" is at the same level as it would have
+    been had it remained having the same size and baseline as the "laim"
+    letters.  The letter kerning is adjusted to cause the word's width to be
+    11/2 the word's height.
     ![ClaimStation logo - word]
 
 Secondary logos:
