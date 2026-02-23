@@ -15,9 +15,10 @@ priority: 5
 
 ## Before Making Changes
 
-1. **claimstation-app**: Check `claimstation-app/docs/en/tech/implementation-status/index.md` for current project state
-2. Read relevant source files to understand existing patterns
-3. Review the rules in `.cursor/rules/` for domain-specific guidance
+1. **Identify the repo** — This workspace has 3 Git repos (root, claimstation-app, claimstation-www). Work and run git/npm in the repo that matches the task. See `workspace.mdc`.
+2. **claimstation-app**: Check `claimstation-app/docs/en/tech/implementation-status/index.md` for current project state
+3. Read relevant source files to understand existing patterns
+4. Review the rules in `.cursor/rules/` for domain-specific guidance
 
 ## Change Workflow
 

@@ -1,0 +1,23 @@
+---
+description: Workspace has 3 separate Git repos; work in the correct repo for each task
+alwaysApply: true
+priority: 15
+---
+
+# Three Repositories in This Workspace
+
+This workspace contains **three separate Git repositories**. Always identify which repo a task belongs to, then work (and run git/npm) **inside that repo's directory**.
+
+| Repository      | Path               | Use for |
+|-----------------|--------------------|---------|
+| **ClaimStation** (root) | `.` / workspace root | Cursor rules, brand assets, top-level config, README |
+| **claimstation-app**    | `claimstation-app/` | Next.js app: source, Supabase, CI, docs — run `git` and `npm` here for app work |
+| **claimstation-www**    | `claimstation-www/` | Marketing/static site — run `git` and `npm` here for www work |
+
+## For each task
+
+1. **Decide which repo** the change belongs to (app code → `claimstation-app`, www code → `claimstation-www`, rules/config at root → root repo).
+2. **Run commands in that repo**: `cd claimstation-app` (or `claimstation-www`) before `git add`, `git commit`, `npm run …`, etc.
+3. **Edit files** in the appropriate tree; the root repo ignores `claimstation-*/` via `.gitignore`.
+
+If the user says "the app" or "claimstation-app", work in `claimstation-app/`. If they say "the website" or "the www site" or "claimstation-www", work in `claimstation-www/`.
