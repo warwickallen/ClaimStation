@@ -43,6 +43,8 @@ export async function GET(request: NextRequest) {
 
 Public API routes go in `claimstation-app/src/app/api/v1/`. Use API key authentication.
 
+**OpenAPI**: The v1 API is described by an OpenAPI 3.0 spec generated from Zod schemas. Schemas and paths live in `claimstation-app/src/lib/api/openapi-v1.ts`. The spec is served at **GET** `/api/v1/openapi`; Swagger UI is at `/[locale]/docs/api`. When adding or changing v1 endpoints, update the registry in `openapi-v1.ts` and prefer reusing the same Zod schemas for request validation in the route handlers.
+
 ## Error Responses
 
 Use consistent error format. Apply rate limiting to all public API endpoints.

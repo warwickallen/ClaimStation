@@ -12,5 +12,6 @@ When you add, change, or remove user-facing or technical functionality in the ap
 
 - **User docs**: `claimstation-app/docs/<locale>/user/` (en, de, nl). For in-app help.
 - **Tech docs**: `claimstation-app/docs/en/tech/` — British English only.
+- **Public API (v1)**: The OpenAPI spec and schemas are in code (`claimstation-app/src/lib/api/openapi-v1.ts`). When changing v1 endpoints, update that file and any user/tech docs that reference the API (e.g. user [API documentation](claimstation-app/docs/en/user/api-documentation.md), tech [Public API & OpenAPI](claimstation-app/docs/en/tech/features/public-api.md)).
 
 Principles: Code is source of truth; use relative links; use Mermaid where helpful; i18n tags for dialect differences. When making a change: update user docs if feature changed; update tech docs if API/schema/workflow changed; use British English in tech docs.
