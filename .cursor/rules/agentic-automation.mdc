@@ -1,5 +1,5 @@
 ---
-description: Agentic automation for trunk-based development with deployment monitoring
+description: Agentic automation for trunk-based workflow with a UAT release gate and deployment monitoring
 alwaysApply: true
 priority: 15
 ---
@@ -8,9 +8,16 @@ priority: 15
 
 **Mandatory**: Agents MUST commit, push, and monitor deployments after each unit of work when the project has CI configured. Do NOT end a session with unpushed commits unless explicitly blocked (e.g. no push permissions). Pushing through to production is the default behaviour where applicable, not optional.
 
-## Trunk-Based Development
+## Branch and Deployment Pipeline
 
-- Work directly on `main` branch (or short-lived feature branches that merge quickly)
+- **UAT** branch → deploys to `stage.claimstation.app` (Preview/staging)
+- **main** branch → deploys to `claimstation.app` (Production)
+- **Promotion**: Merge UAT → main to promote a staging build to production
+
+## Trunk-Based Workflow with UAT Release Gate
+
+- Merge changes to **UAT** (from short-lived feature branches or from main) for verification at stage.claimstation.app
+- Promote to production by merging UAT → main
 - Keep commits small and focused
 - Ensure each commit leaves the codebase in a deployable state
 - Avoid long-lived branches; merge frequently
@@ -118,5 +125,5 @@ If a deployment fails:
 
 ## Project-specific CI
 
-- **claimstation-app**: Full CI in `claimstation-app/.github/workflows/` (lint, test, database, build, e2e, deploy to Vercel, Supabase Edge Functions). See `claimstation-app/.cursor/rules/` for app-specific automation details if needed.
+- **claimstation-app**: Full CI in `claimstation-app/.github/workflows/` (lint, test, database, build, e2e, deploy to Vercel, Supabase Edge Functions). Push to **UAT** deploys to stage.claimstation.app; push to **main** deploys to claimstation.app. Database migrations and Edge Functions deploy only on main. See `claimstation-app/docs/en/tech/operations/uat-promotion.md` for the UAT and promotion runbook.
 - **claimstation-www**: May have its own workflow; run that project's checks before push.

@@ -55,7 +55,7 @@ Agents MUST commit, push, and monitor deployments autonomously when working in a
 - **Monitor** every push with `gh run watch --exit-status` where CI is configured—do not skip
 - **Fix failures** promptly; re-push and re-monitor until CI is green
 
-Default behaviour: push through to production. Only skip if explicitly blocked (e.g. no push permissions). See `agentic-automation.mdc` for detailed workflow.
+Default behaviour: push through to production. For claimstation-app, pushing to **main** deploys to production (claimstation.app); pushing to **UAT** deploys to staging (stage.claimstation.app). Merge UAT → main to promote. Only skip if explicitly blocked (e.g. no push permissions). See `agentic-automation.mdc` for detailed workflow.
 
 ## Error Recovery
 
