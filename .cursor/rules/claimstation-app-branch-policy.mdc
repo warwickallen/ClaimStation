@@ -1,0 +1,45 @@
+---
+description: Branch policy for claimstation-app — no direct pushes to main; use UAT or feature branches; promote via PRs
+alwaysApply: true
+priority: 20
+---
+
+# claimstation-app Branch Policy
+
+When working in **claimstation-app**, agents MUST NOT push or commit directly to the `main` branch. Updates to `main` must go through Pull Requests.
+
+## Before Pushing
+
+1. **Confirm your branch**: Ensure you are on **UAT** or a **feature branch**, never on `main`.
+2. **If on main**: Check out UAT or create a feature branch before making changes.
+
+```bash
+# Check current branch
+git branch --show-current
+
+# If on main, switch to UAT
+git checkout UAT
+
+# Or create a feature branch
+git checkout -b feat/your-feature-name
+```
+
+## Workflow
+
+| Branch | Push allowed | Deployment |
+|--------|---------------|------------|
+| **UAT** | Yes | stage.claimstation.app |
+| **Feature branches** | Yes | (after merging to UAT) |
+| **main** | No | Promote via PR only |
+
+## Promoting to Production
+
+- Merge UAT → main via a Pull Request
+- Do not push directly to main
+- See `claimstation-app/docs/en/tech/operations/uat-promotion.md` for the runbook
+
+## Summary
+
+- Work on **UAT** or **feature branches** only
+- Push to UAT/feature branches as usual; monitor CI
+- Promote to `main` via PR only; never `git push origin main`
