@@ -1,0 +1,21 @@
+---
+description: Recognises "Promote UAT" — create a PR to merge UAT into main with meaningful title and description
+alwaysApply: true
+priority: 15
+---
+
+# Promote UAT
+
+When the user says **"Promote UAT"** (case-insensitive), the agent should:
+
+1. **Examine the changes** — Review the commits and diff between `UAT` and `main` (e.g. `git log main..UAT`, `git diff main...UAT`)
+2. **Create a Pull Request** — Open a PR merging the `UAT` branch into the `main` branch
+3. **Use meaningful title and description** — Summarise what the PR contains; base the content on the changes examined
+
+Do not add boilerplate stating that the PR promotes from UAT/Staging to Production — that is implied by merging into `main`.
+
+## Context
+
+- Applies when working in **claimstation-app**
+- Base: `main`, head: `UAT`
+- See `claimstation-app/docs/en/tech/operations/uat-promotion.md` for the runbook
